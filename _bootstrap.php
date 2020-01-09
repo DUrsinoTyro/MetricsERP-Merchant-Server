@@ -21,10 +21,16 @@ error_reporting('all');
 // pull environment vars
 $merchantId = 'TYRO_318';
 $password = 'e627bccdeba510cd6be5f0745c3f7091';
+$apiVersion = '54';
 
+
+// validate apiVersion is above minimum
+if (intval($apiVersion) < 39) {
+    error(500, "API Version must be >= 39");
+}
 
 // build api endpoint url
-$gatewayUrl = "https://test-tyro.mtf.gateway.mastercard.com//api/rest/version/54/merchant/${merchantId}";
+$gatewayUrl = "https://test-tyro.mtf.gateway.mastercard.com/api/rest/version/${apiVersion}/merchant/${merchantId}";
 
 // parse query string
 $query = array();
